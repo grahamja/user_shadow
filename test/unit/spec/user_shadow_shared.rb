@@ -1,6 +1,8 @@
-shared_examples_for 'testuser' do |distro, version|
-  it 'creates user testuser' do
-    expect(chef_run).to create_user('testuser')
+shared_examples_for 'testuser' do |_distro, _version|
+  %w(testuser testuser2).each do |user|
+    it "creates user #{user}" do
+      expect(chef_run).to create_user(user)
+    end
   end
 
   it 'sets shadow attributes for user testuser' do
@@ -11,6 +13,15 @@ shared_examples_for 'testuser' do |distro, version|
       sp_max: 60,
       sp_inact: 10,
       sp_warn: 10
+    )
+  end
+
+  it 'sets shadow attributes for user testuser2' do
+    expect(chef_run).to modify_shadow_attributes('testuser2').with(
+      sp_expire: '-1',
+      sp_min: 0,
+      sp_max: 99_999,
+      sp_inact: '-1'
     )
   end
 end

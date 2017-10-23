@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'rspec/core/rake_task'
+require 'cookstyle'
 require 'rubocop/rake_task'
 require 'foodcritic'
 require 'kitchen'
@@ -13,8 +14,7 @@ namespace :style do
   FoodCritic::Rake::LintTask.new(:chef) do |t|
     t.options = { search_gems: true,
                   tags: %w(~rackspace-support),
-                  fail_tags: %w(correctness,rackspace)
-                }
+                  fail_tags: %w(correctness,rackspace) }
   end
 end
 
@@ -52,7 +52,7 @@ namespace :integration do
         threads = []
         concurrency.times do
           threads << Thread.new do
-            while instance = queue.pop
+            while (instance = queue.pop)
               instance.send(t)
             end
           end
