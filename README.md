@@ -6,9 +6,11 @@ A library cookbook to provide a resource for modifying user shadow attributes.
 
 ## Supported Platforms
 
-* Centos 6.7
-* Ubuntu 12.04
+* Centos 5.11
+* Centos 6.9
+* Centos 7.4
 * Ubuntu 14.04
+* Ubuntu 16.04
 
 ## Requirements
 
